@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Box from "./components/Box";
 
 function App() {
   const [hex, setHex] = useState("#f15025");
@@ -88,11 +89,7 @@ function App() {
       </form>
       <section className="color-container">
         {allValues.map((val, index) => {
-          return (
-            <div key={index} style={{ backgroundColor: val }}>
-              {val}
-            </div>
-          );
+          return <Box val={val} index={index} />;
         })}
       </section>
     </main>
