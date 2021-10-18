@@ -33,7 +33,6 @@ function App() {
       allVal = [...toWhite(toRgb), ...toBlack(toRgb)];
 
       setAllValues(allVal);
-      // console.log(allVal);
     }
   }
 
@@ -44,13 +43,11 @@ function App() {
     const blueDiff = (255 - toRgb.b) / 10;
 
     for (let i = 0; i <= 10; i++) {
-      const red = 255 - i * redDiff;
-      const green = 255 - i * greenDiff;
-      const blue = 255 - i * blueDiff;
+      const red = parseInt(255 - i * redDiff);
+      const green = parseInt(255 - i * greenDiff);
+      const blue = parseInt(255 - i * blueDiff);
 
       const convert = rgbToHex(red, green, blue);
-
-      // console.log(convert);
 
       allVal.push(convert);
     }
@@ -64,37 +61,38 @@ function App() {
     const blueDiff = toRgb.b / 10;
 
     for (let i = 1; i <= 10; i++) {
-      const red = toRgb.r - i * redDiff;
-      const green = toRgb.g - i * greenDiff;
-      const blue = toRgb.b - i * blueDiff;
+      const red = parseInt(toRgb.r - i * redDiff);
+      const green = parseInt(toRgb.g - i * greenDiff);
+      const blue = parseInt(toRgb.b - i * blueDiff);
 
       const convert = rgbToHex(red, green, blue);
-
-      // console.log(convert);
 
       allVal.push(convert);
     }
     return allVal;
   }
 
-  // console.log(hexToRgb("#ffd"));
-
   return (
     <main>
       <form onSubmit={handleSubmit} className="form">
         <label>Color Generator</label>
         <input
+          className="text"
           type="text"
           name="code"
           placeholder={hex}
           value={hex}
           onChange={(e) => setHex(e.target.value)}
         />
-        <input type="submit" value="Submit" name="btn" />
+        <input className="submit" type="submit" value="Submit" name="btn" />
       </form>
       <section className="color-container">
-        {allValues.map((val) => {
-          return <div style={{ backgroundColor: val }}>{val}</div>;
+        {allValues.map((val, index) => {
+          return (
+            <div key={index} style={{ backgroundColor: val }}>
+              {val}
+            </div>
+          );
         })}
       </section>
     </main>
